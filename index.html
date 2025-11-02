@@ -14,16 +14,29 @@
       box-sizing: border-box;
     }
 
+    /* CORRECCIÓN CRÍTICA: Prevenir overflow horizontal */
+    html, body {
+      width: 100%;
+      overflow-x: hidden;
+      position: relative;
+    }
+
     body {
       background: 
         linear-gradient(rgba(26, 92, 58, 0.5), rgba(45, 122, 82, 0.5)),
         url('imagenes/bosqueplimplim1920x1080.png') center/cover fixed;
+      width: 100%;
+      overflow-x: hidden;
     }
+
     .container {
       text-align: center;
       position: relative;
       padding: 20px;
       z-index: 2;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
     }
 
     /* 🔹 SISTEMA MEJORADO DE ANIMACIONES AL SCROLL */
@@ -31,6 +44,8 @@
       opacity: 0;
       transform: translateY(60px);
       transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      width: 100%;
+      max-width: 100%;
     }
 
     .scroll-animado.visible {
@@ -145,6 +160,8 @@
       animation: fadeIn 2s ease-in-out;
       z-index: 10;
       perspective: 1000px;
+      width: 100%;
+      max-width: 100%;
     }
 
     .marco-animado {
@@ -152,6 +169,8 @@
       display: inline-block;
       animation: flotarSuave 6s ease-in-out infinite;
       filter: drop-shadow(0 10px 25px rgba(139, 69, 19, 0.4));
+      width: 100%;
+      max-width: 100%;
     }
 
     .portada img {
@@ -179,6 +198,8 @@
         0 0 20px rgba(255, 215, 0, 0.8);
       animation: tituloBrillante 3s ease-in-out infinite;
       z-index: 11;
+      width: 90%;
+      max-width: 100%;
     }
 
     /* 🔹 TEXTO ANIMADO - NUEVO ESTILO */
@@ -189,6 +210,7 @@
       z-index: 3;
       position: relative;
       padding: 15px 20px;
+      width: 100%;
     }
 
     .linea-1 {
@@ -202,6 +224,8 @@
       animation: aparecerTexto 2s ease-out 0.5s both,
                  brilloTexto 4s ease-in-out infinite 2s;
       line-height: 1.3;
+      width: 100%;
+      overflow-wrap: break-word;
     }
 
     .linea-2 {
@@ -214,6 +238,8 @@
       animation: aparecerTexto 2s ease-out 1s both,
                  brilloTextoVerde 5s ease-in-out infinite 2.5s;
       line-height: 1.3;
+      width: 100%;
+      overflow-wrap: break-word;
     }
 
     .emojis-linea {
@@ -221,6 +247,7 @@
       margin: 10px 0;
       text-align: center;
       animation: aparecerEmojis 1.5s ease-out 1.2s both;
+      width: 100%;
     }
 
     .emoji {
@@ -242,6 +269,7 @@
       max-width: 1200px;
       position: relative;
       z-index: 3;
+      width: 100%;
     }
 
     .amigos-safari h2 {
@@ -250,6 +278,7 @@
       color: #8B4513;
       margin-bottom: 30px;
       text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+      width: 100%;
     }
 
     .amigos-container {
@@ -259,6 +288,7 @@
       flex-wrap: wrap;
       gap: 25px;
       perspective: 1000px;
+      width: 100%;
     }
 
     .amigo-card {
@@ -360,6 +390,7 @@
       position: relative;
       border: 3px solid #fbe9c3;
       transition: all 0.3s ease;
+      width: 90%;
     }
 
     .detalles-evento:hover {
@@ -414,6 +445,7 @@
       max-width: 800px;
       position: relative;
       z-index: 3;
+      width: 100%;
     }
 
     .contador-safari h2 {
@@ -435,6 +467,8 @@
       position: relative;
       overflow: hidden;
       animation: respiracionSutil 4s ease-in-out infinite;
+      width: 90%;
+      margin: 0 auto;
     }
 
     .contador-container::before {
@@ -507,6 +541,7 @@
       justify-content: space-around;
       align-items: center;
       margin-top: 20px;
+      flex-wrap: wrap;
     }
 
     .animal-emoji {
@@ -528,6 +563,7 @@
       text-align: center;
       z-index: 3;
       position: relative;
+      width: 90%;
     }
 
     .ubicacion-interactiva h2 {
@@ -548,6 +584,7 @@
       transition: all 0.3s ease;
       text-decoration: none;
       display: block;
+      width: 100%;
     }
 
     .mapa-cuadro:hover {
@@ -584,6 +621,7 @@
       max-width: 800px;
       position: relative;
       z-index: 3;
+      width: 100%;
     }
 
     .confirmacion-safari h2 {
@@ -605,6 +643,8 @@
       position: relative;
       overflow: hidden;
       animation: respiracionSutil 4s ease-in-out infinite;
+      width: 90%;
+      margin: 0 auto;
     }
 
     .confirmacion-container::before {
@@ -699,6 +739,7 @@
       justify-content: space-around;
       align-items: center;
       margin-top: 25px;
+      flex-wrap: wrap;
     }
 
     .confirmacion-animal {
@@ -1146,10 +1187,12 @@
       font-size: 3em;
       z-index: 3;
       position: relative;
+      width: 100%;
     }
 
     .despedida img {
       width: 370px;
+      max-width: 90%;
       animation: saludo 3s infinite ease-in-out;
     }
 
@@ -1163,12 +1206,16 @@
       to { opacity: 1; }
     }
 
-    /* 🔹 REPRODUCTOR DE MÚSICA CON ALTAVOZ ANIMADO */
+    /* 🔹 REPRODUCTOR DE MÚSICA CON ALTAVOZ ANIMADO - CORREGIDO */
     .reproductor-musica {
       position: fixed;
       top: 20px;
       right: 20px;
       z-index: 1000;
+      /* ELIMINAR cualquier animación de scroll que afecte al botón */
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
     }
 
     .btn-altavoz {
@@ -1189,6 +1236,9 @@
       animation: flotarAltavoz 3s ease-in-out infinite;
       position: relative;
       overflow: hidden;
+      /* Asegurar que el botón sea visible desde el inicio */
+      opacity: 1 !important;
+      transform: none !important;
     }
 
     .btn-altavoz::before {
@@ -1357,6 +1407,10 @@
         padding: 20px 15px;
       }
       
+      .amigos-safari h2 {
+        font-size: 3.5em;
+      }
+      
       .amigos-container {
         gap: 20px;
       }
@@ -1417,6 +1471,10 @@
         padding: 30px 15px;
       }
       
+      .contador-safari h2 {
+        font-size: 3.5em;
+      }
+      
       .contador-grid {
         gap: 15px;
       }
@@ -1443,6 +1501,10 @@
         padding: 30px 15px;
       }
       
+      .confirmacion-safari h2 {
+        font-size: 3.5em;
+      }
+      
       .botones-confirmacion {
         gap: 15px;
       }
@@ -1464,7 +1526,7 @@
       }
       
       .detalles-evento h2 {
-        font-size: 3em;
+        font-size: 2.5em;
       }
       
       .detalles-lista p {
@@ -1484,11 +1546,15 @@
       .reproductor-musica {
         top: 15px;
         right: 15px;
+        opacity: 1 !important;
+        transform: none !important;
       }
       
       .btn-altavoz {
         width: 55px;
         height: 55px;
+        opacity: 1 !important;
+        transform: none !important;
       }
       
       .emoji-altavoz {
@@ -1503,11 +1569,9 @@
 
     @media (max-width: 480px) {
       body {
-        background-image: url('imagenes/bosqueplimplim800x1400.png');
-        background-position: center top;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-attachment: fixed;
+        background: 
+          linear-gradient(rgba(26, 92, 58, 0.6), rgba(45, 122, 82, 0.6)),
+          url('imagenes/bosqueplimplim800x1400.png') center/cover fixed;
       }
 
       
@@ -1523,7 +1587,7 @@
       }
 
       .amigos-safari h2 {
-        font-size: 2em;
+        font-size: 2.5em;
         margin-bottom: 20px;
       }
       
@@ -1588,7 +1652,7 @@
       }
       
       .contador-safari h2 {
-        font-size: 2em;
+        font-size: 2.5em;
         margin-bottom: 20px;
       }
       
@@ -1629,7 +1693,7 @@
       }
       
       .confirmacion-safari h2 {
-        font-size: 2em;
+        font-size: 2.5em;
         margin-bottom: 20px;
       }
       
@@ -1658,7 +1722,7 @@
       }
       
       .detalles-evento h2 {
-        font-size: 2.6em;
+        font-size: 2em;
       }
       
       .detalles-lista p {
@@ -1682,11 +1746,15 @@
       .reproductor-musica {
         top: 10px;
         right: 10px;
+        opacity: 1 !important;
+        transform: none !important;
       }
       
       .btn-altavoz {
         width: 50px;
         height: 50px;
+        opacity: 1 !important;
+        transform: none !important;
       }
       
       .emoji-altavoz {
@@ -1695,14 +1763,13 @@
     }
 
     @media (max-width: 360px) {
-     
       .linea-1 {
-        font-size: 2em !important;
+        font-size: 2.8em !important;
         line-height: 1.2 !important;
       }
       
       .linea-2 {
-        font-size: 1.3em !important;
+        font-size: 2em !important;
         line-height: 1.2 !important;
       }
       
@@ -1729,12 +1796,31 @@
       }
       
       .detalles-evento h2 {
-        font-size: 1.4em;
+        font-size: 1.8em;
       }
       
       .detalles-lista p {
         font-size: 0.9em;
         padding-left: 10px;
+      }
+      
+      /* Ajuste adicional para el botón de música en pantallas muy pequeñas */
+      .reproductor-musica {
+        top: 8px;
+        right: 8px;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      
+      .btn-altavoz {
+        width: 45px;
+        height: 45px;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      
+      .emoji-altavoz {
+        font-size: 1.2em;
       }
     }
   </style>
@@ -1949,13 +2035,15 @@
     </div>
   </div>
 
-  <!-- 🔹 REPRODUCTOR DE MÚSICA CON ALTAVOZ ANIMADO -->
+  <!-- 🔹 REPRODUCTOR DE MÚSICA CON ALTAVOZ ANIMADO - CORREGIDO -->
+  <!-- QUITAR la clase scroll-animado del contenedor del botón -->
   <div class="reproductor-musica">
     <audio id="musicaFondo" loop>
       <source src="musica/safari-feliz.mp3" type="audio/mpeg">
       <source src="musica/safari-feliz.ogg" type="audio/ogg">
       Tu navegador no soporta el elemento de audio.
     </audio>
+    <!-- QUITAR cualquier clase de animación del botón -->
     <button id="btnMusica" class="btn-altavoz">
       <span class="emoji-altavoz">🔇</span>
     </button>
@@ -1988,7 +2076,10 @@
       });
       
       elementos.forEach(elemento => {
-        observer.observe(elemento);
+        // EXCLUIR el botón de música de las observaciones de scroll
+        if (!elemento.closest('.reproductor-musica')) {
+          observer.observe(elemento);
+        }
       });
     }
 
@@ -2542,6 +2633,16 @@
       inicializarMusicaAltavoz();
       inicializarBurbujas();
       observarElementos(); // Sistema mejorado de animaciones
+      
+      // Asegurar que el botón de música sea visible inmediatamente
+      const btnMusica = document.getElementById('btnMusica');
+      const reproductorMusica = document.querySelector('.reproductor-musica');
+      if (btnMusica && reproductorMusica) {
+        btnMusica.style.opacity = '1';
+        btnMusica.style.transform = 'none';
+        reproductorMusica.style.opacity = '1';
+        reproductorMusica.style.transform = 'none';
+      }
     });
     
     window.addEventListener('resize', function() {
