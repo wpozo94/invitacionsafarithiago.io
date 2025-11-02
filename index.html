@@ -26,6 +26,118 @@
       z-index: 2;
     }
 
+    /* 🔹 SISTEMA MEJORADO DE ANIMACIONES AL SCROLL */
+    .scroll-animado {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .scroll-animado.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Efectos específicos para diferentes elementos */
+    .scroll-animado.izquierda {
+      transform: translateX(-80px) translateY(0);
+    }
+
+    .scroll-animado.izquierda.visible {
+      transform: translateX(0) translateY(0);
+    }
+
+    .scroll-animado.derecha {
+      transform: translateX(80px) translateY(0);
+    }
+
+    .scroll-animado.derecha.visible {
+      transform: translateX(0) translateY(0);
+    }
+
+    .scroll-animado.escala {
+      transform: translateY(60px) scale(0.85);
+    }
+
+    .scroll-animado.escala.visible {
+      transform: translateY(0) scale(1);
+    }
+
+    .scroll-animado.rotacion {
+      transform: translateY(60px) rotate(-8deg);
+    }
+
+    .scroll-animado.rotacion.visible {
+      transform: translateY(0) rotate(0deg);
+    }
+
+    .scroll-animado.rebote {
+      transform: translateY(60px);
+    }
+
+    .scroll-animado.rebote.visible {
+      animation: reboteAnimacion 0.8s ease-out;
+    }
+
+    @keyframes reboteAnimacion {
+      0% {
+        transform: translateY(60px);
+        opacity: 0;
+      }
+      60% {
+        transform: translateY(-15px);
+        opacity: 1;
+      }
+      80% {
+        transform: translateY(5px);
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* 🔹 ANIMACIONES PARA ELEMENTOS INTERNOS */
+    .texto-animado {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease 0.3s;
+    }
+
+    .scroll-animado.visible .texto-animado {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .emoji-animado {
+      display: inline-block;
+      opacity: 0;
+      transform: scale(0) rotate(-180deg);
+      transition: all 0.5s ease;
+    }
+
+    .scroll-animado.visible .emoji-animado {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+
+    /* Animación escalonada para elementos en lista */
+    .item-lista {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: all 0.5s ease;
+    }
+
+    .scroll-animado.visible .item-lista:nth-child(1) { transition-delay: 0.1s; }
+    .scroll-animado.visible .item-lista:nth-child(2) { transition-delay: 0.2s; }
+    .scroll-animado.visible .item-lista:nth-child(3) { transition-delay: 0.3s; }
+    .scroll-animado.visible .item-lista:nth-child(4) { transition-delay: 0.4s; }
+
+    .scroll-animado.visible .item-lista {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
     /* 🔹 Portada - ANIMACIONES SIN FONDO */
     .portada {
       position: relative;
@@ -138,7 +250,6 @@
       color: #8B4513;
       margin-bottom: 30px;
       text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
-      animation: aparecerDesdeAbajo 1.5s ease-out 0.5s both;
     }
 
     .amigos-container {
@@ -154,15 +265,8 @@
       position: relative;
       width: 180px;
       height: 220px;
-      animation: aparecerAmigo 1s ease-out both;
       transform-style: preserve-3d;
     }
-
-    .amigo-card:nth-child(1) { animation-delay: 0.7s; }
-    .amigo-card:nth-child(2) { animation-delay: 0.9s; }
-    .amigo-card:nth-child(3) { animation-delay: 1.1s; }
-    .amigo-card:nth-child(4) { animation-delay: 1.3s; }
-    .amigo-card:nth-child(5) { animation-delay: 1.5s; }
 
     .amigo-inner {
       position: relative;
@@ -244,7 +348,7 @@
       filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
     }
 
-    /* === NUEVA SECCIÓN: DETALLES DEL EVENTO === */
+    /* === NUEVA SECCIÓN: DETALLES DEL EVENTO MEJORADA === */
     .detalles-evento {
       background: rgba(255, 255, 255, 0.95);
       border-radius: 20px;
@@ -252,10 +356,15 @@
       max-width: 500px;
       margin: 40px auto;
       box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-      animation: aparecerDesdeAbajo 2s ease-out 0.8s both;
       z-index: 3;
       position: relative;
       border: 3px solid #fbe9c3;
+      transition: all 0.3s ease;
+    }
+
+    .detalles-evento:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
     }
 
     .detalles-evento h2 {
@@ -266,13 +375,31 @@
       text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
     }
 
-    .detalles-evento p {
+    /* 🔹 ESTILOS MEJORADOS PARA DETALLES DEL EVENTO */
+    .detalles-lista {
+      text-align: left;
+    }
+
+    .detalles-lista p {
       font-size: 1.2em;
-      margin: 12px 0;
+      margin: 15px 0;
       font-family: 'Patrick Hand', cursive;
       color: #2c3e50;
-      text-align: left;
-      padding-left: 20px;
+      padding: 10px 20px;
+      border-left: 4px solid #8B4513;
+      background: rgba(139, 69, 19, 0.05);
+      border-radius: 0 10px 10px 0;
+      transition: all 0.3s ease;
+    }
+
+    .detalles-lista p:hover {
+      background: rgba(139, 69, 19, 0.1);
+      transform: translateX(5px);
+    }
+
+    .detalles-lista .emoji-animado {
+      margin-right: 10px;
+      font-size: 1.3em;
     }
 
     .detalles-evento strong {
@@ -287,7 +414,6 @@
       max-width: 800px;
       position: relative;
       z-index: 3;
-      animation: aparecerDesdeAbajo 2s ease-out 1s both;
     }
 
     .contador-safari h2 {
@@ -308,6 +434,7 @@
       border: 5px solid #fbe9c3;
       position: relative;
       overflow: hidden;
+      animation: respiracionSutil 4s ease-in-out infinite;
     }
 
     .contador-container::before {
@@ -340,7 +467,8 @@
     }
 
     .contador-item:hover {
-      transform: translateY(-5px) scale(1.05);
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     }
 
     .contador-numero {
@@ -400,7 +528,6 @@
       text-align: center;
       z-index: 3;
       position: relative;
-      animation: aparecerDesdeAbajo 2s ease-out 1.2s both;
     }
 
     .ubicacion-interactiva h2 {
@@ -424,8 +551,8 @@
     }
 
     .mapa-cuadro:hover {
-      transform: scale(1.05);
-      box-shadow: 0 15px 30px rgba(139, 69, 19, 0.5);
+      transform: scale(1.08);
+      box-shadow: 0 20px 40px rgba(139, 69, 19, 0.4);
     }
 
     .mapa-icono {
@@ -457,7 +584,6 @@
       max-width: 800px;
       position: relative;
       z-index: 3;
-      animation: aparecerDesdeAbajo 2s ease-out 1.4s both;
     }
 
     .confirmacion-safari h2 {
@@ -478,6 +604,7 @@
       border: 5px solid #ffd700;
       position: relative;
       overflow: hidden;
+      animation: respiracionSutil 4s ease-in-out infinite;
     }
 
     .confirmacion-container::before {
@@ -547,7 +674,7 @@
 
     .btn-confirmacion:hover {
       transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 12px 25px rgba(139, 69, 19, 0.6);
+      box-shadow: 0 15px 30px rgba(139, 69, 19, 0.6);
     }
 
     .btn-confirmacion:active {
@@ -621,6 +748,11 @@
       75% {
         transform: translateY(-5px) rotate(-5deg);
       }
+    }
+
+    @keyframes respiracionSutil {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
     }
 
     /* Resto de animaciones... */
@@ -1014,7 +1146,6 @@
       font-size: 3em;
       z-index: 3;
       position: relative;
-      animation: aparecerDesdeAbajo 2s ease-out 1.6s both;
     }
 
     .despedida img {
@@ -1032,16 +1163,166 @@
       to { opacity: 1; }
     }
 
-    /* 🔹 CLASES PARA ANIMACIÓN AL SCROLL */
-    .scroll-animado {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.8s ease;
+    /* 🔹 REPRODUCTOR DE MÚSICA CON ALTAVOZ ANIMADO */
+    .reproductor-musica {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
     }
 
-    .scroll-animado.visible {
+    .btn-altavoz {
+      width: 60px;
+      height: 60px;
+      border: none;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #8B4513, #D2691E);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 
+        0 5px 15px rgba(139, 69, 19, 0.4),
+        0 0 0 3px #ffd700,
+        0 0 0 6px rgba(255, 215, 0, 0.3);
+      transition: all 0.3s ease;
+      animation: flotarAltavoz 3s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-altavoz::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: linear-gradient(45deg, #ffd700, #ffec8b, #ffd700);
+      border-radius: 50%;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .btn-altavoz:hover::before {
       opacity: 1;
-      transform: translateY(0);
+    }
+
+    .btn-altavoz:hover {
+      transform: scale(1.15) rotate(5deg);
+      box-shadow: 
+        0 8px 25px rgba(139, 69, 19, 0.6),
+        0 0 0 3px #ffd700,
+        0 0 0 6px rgba(255, 215, 0, 0.5),
+        0 0 20px rgba(255, 215, 0, 0.4);
+    }
+
+    .btn-altavoz.reproduciendo {
+      background: linear-gradient(135deg, #1b6b3f, #6dd66d);
+      animation: 
+        flotarAltavoz 3s ease-in-out infinite,
+        brilloMusica 2s ease-in-out infinite;
+    }
+
+    .btn-altavoz.reproduciendo .emoji-altavoz {
+      animation: vibrarAltavoz 0.5s ease-in-out infinite;
+    }
+
+    .emoji-altavoz {
+      font-size: 1.8em;
+      filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+      transition: all 0.3s ease;
+      display: block;
+    }
+
+    .btn-altavoz.reproduciendo .emoji-altavoz {
+      content: "🔊";
+    }
+
+    /* Animaciones para el altavoz */
+    @keyframes flotarAltavoz {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+      }
+      25% {
+        transform: translateY(-5px) scale(1.05);
+      }
+      75% {
+        transform: translateY(-2px) scale(1.02);
+      }
+    }
+
+    @keyframes brilloMusica {
+      0%, 100% {
+        box-shadow: 
+          0 5px 15px rgba(27, 107, 63, 0.4),
+          0 0 0 3px #ffd700,
+          0 0 0 6px rgba(255, 215, 0, 0.3);
+      }
+      50% {
+        box-shadow: 
+          0 5px 20px rgba(27, 107, 63, 0.8),
+          0 0 0 3px #ffd700,
+          0 0 0 6px rgba(255, 215, 0, 0.5),
+          0 0 25px rgba(255, 215, 0, 0.6);
+      }
+    }
+
+    @keyframes vibrarAltavoz {
+      0%, 100% {
+        transform: scale(1) rotate(0deg);
+      }
+      25% {
+        transform: scale(1.1) rotate(2deg);
+      }
+      75% {
+        transform: scale(1.1) rotate(-2deg);
+      }
+    }
+
+    /* Efecto de pulso cuando se hace clic */
+    @keyframes pulsoClic {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(0.9);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .btn-altavoz:active {
+      animation: pulsoClic 0.3s ease;
+    }
+
+    /* Tooltip para el botón */
+    .btn-altavoz::after {
+      content: 'Activar música';
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 10px;
+      font-family: 'Patrick Hand', cursive;
+      font-size: 0.9em;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .btn-altavoz:hover::after {
+      opacity: 1;
+    }
+
+    .btn-altavoz.reproduciendo::after {
+      content: 'Desactivar música';
     }
 
     /* 🔹 MEDIA QUERIES - CORREGIDAS PARA MÓVIL */
@@ -1051,6 +1332,16 @@
           linear-gradient(rgba(26, 92, 58, 0.6), rgba(45, 122, 82, 0.6)),
           url('imagenes/bosqueplimplim800x1400.png') center/cover scroll;
       }
+      
+      .scroll-animado {
+        transform: translateY(40px); /* Menos movimiento en móviles */
+      }
+      
+      .scroll-animado.izquierda,
+      .scroll-animado.derecha {
+        transform: translateX(0) translateY(40px); /* Sin movimiento lateral en móviles */
+      }
+
       .portada img { 
         width: 95%;
         max-width: none;
@@ -1176,8 +1467,9 @@
         font-size: 3em;
       }
       
-      .detalles-evento p {
-        font-size: 2.1em;
+      .detalles-lista p {
+        font-size: 1.1em;
+        padding: 8px 15px;
       }
       
       .mapa-texto {
@@ -1186,6 +1478,26 @@
       
       .mapa-direccion {
         font-size: 1.1em;
+      }
+
+      /* Música en móviles */
+      .reproductor-musica {
+        top: 15px;
+        right: 15px;
+      }
+      
+      .btn-altavoz {
+        width: 55px;
+        height: 55px;
+      }
+      
+      .emoji-altavoz {
+        font-size: 1.6em;
+      }
+      
+      .btn-altavoz::after {
+        font-size: 0.8em;
+        bottom: -35px;
       }
     }
 
@@ -1196,7 +1508,7 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-attachment: fixed;
-      }
+      }
 
       
       .portada h1 {
@@ -1349,8 +1661,8 @@
         font-size: 2.6em;
       }
       
-      .detalles-evento p {
-        font-size: 2em;
+      .detalles-lista p {
+        font-size: 1em;
         padding-left: 15px;
       }
       
@@ -1364,6 +1676,21 @@
       
       .mapa-cuadro {
         padding: 20px;
+      }
+
+      /* Música en móviles pequeños */
+      .reproductor-musica {
+        top: 10px;
+        right: 10px;
+      }
+      
+      .btn-altavoz {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .emoji-altavoz {
+        font-size: 1.4em;
       }
     }
 
@@ -1405,12 +1732,11 @@
         font-size: 1.4em;
       }
       
-      .detalles-evento p {
+      .detalles-lista p {
         font-size: 0.9em;
         padding-left: 10px;
       }
     }
-
   </style>
 </head>
 
@@ -1427,7 +1753,7 @@
     </div>
 
     <!-- NUEVO TEXTO ANIMADO - ESTRUCTURA MODIFICADA PARA MÓVIL -->
-    <div class="texto-magico scroll-animado">
+    <div class="texto-magico scroll-animado escala">
       <div class="destellos-container" id="destellosTexto"></div>
       
       <!-- Línea 1 - Texto principal -->
@@ -1448,8 +1774,8 @@
     </div>
 
     <!-- === NUEVA SECCIÓN: AMIGOS SAFARI === -->
-    <div class="amigos-safari scroll-animado">
-      <h2>¡La Pandilla Safari!</h2>
+    <div class="amigos-safari scroll-animado rotacion">
+      <h2 class="texto-animado">¡La Pandilla Safari!</h2>
       <div class="amigos-container">
         <!-- Amigo 1 -->
         <div class="amigo-card">
@@ -1523,16 +1849,28 @@
       </div>
     </div>
 
-    <!-- === NUEVA SECCIÓN: DETALLES DEL EVENTO === -->
-    <div class="detalles-evento scroll-animado">
-      <h2>Detalles del evento</h2>
-      <p><strong>📅 Fecha:</strong> 08 de noviembre de 2025</p>
-      <p><strong>🕕 Hora:</strong> 6:30 PM</p>
+    <!-- === NUEVA SECCIÓN: DETALLES DEL EVENTO MEJORADA === -->
+    <div class="detalles-evento scroll-animado izquierda">
+      <h2 class="texto-animado">Detalles del evento</h2>
+      <div class="detalles-lista">
+        <p class="item-lista">
+          <span class="emoji-animado">📅</span>
+          <strong>Fecha:</strong> 08 de noviembre de 2025
+        </p>
+        <p class="item-lista">
+          <span class="emoji-animado">🕕</span>
+          <strong>Hora:</strong> 6:30 PM
+        </p>
+        <p class="item-lista">
+          <span class="emoji-animado">⭐</span>
+          <strong>Dress Code:</strong> Safari Style
+        </p>
+      </div>
     </div>
 
     <!-- === NUEVA SECCIÓN: CONTADOR REGRESIVO MEJORADO === -->
-    <div class="contador-safari scroll-animado" id="contadorSafari">
-      <h2>¡La Aventura Comienza en...</h2>
+    <div class="contador-safari scroll-animado derecha" id="contadorSafari">
+      <h2 class="texto-animado">¡La Aventura Comienza en...</h2>
       <div class="contador-container">
         <div class="contador-grid">
           <div class="contador-item">
@@ -1564,9 +1902,9 @@
     </div>
 
     <!-- === NUEVA SECCIÓN: UBICACIÓN INTERACTIVA === -->
-    <div class="ubicacion-interactiva scroll-animado">
-      <h2>Ubicación del Evento</h2>
-      <a href="https://maps.google.com/maps?q=-12.0464,-77.0428" target="_blank" class="mapa-cuadro">
+    <div class="ubicacion-interactiva scroll-animado rebote">
+      <h2 class="texto-animado">Ubicación del Evento</h2>
+      <a href="https://maps.google.com/maps?q=-12.017378, -76.823518" target="_blank" class="mapa-cuadro">
         <div class="mapa-icono">📍</div>
         <div class="mapa-texto">Ver en Google Maps</div>
         <div class="mapa-direccion">Haz clic para ver la ubicación exacta</div>
@@ -1574,20 +1912,20 @@
     </div>
 
     <!-- === NUEVA SECCIÓN: CONFIRMACIÓN MEJORADA === -->
-    <div class="confirmacion-safari scroll-animado">
-      <h2>¡Confirma Tu Asistencia!</h2>
+    <div class="confirmacion-safari scroll-animado escala">
+      <h2 class="texto-animado">¡Confirma Tu Asistencia!</h2>
       <div class="confirmacion-container">
         <div class="confirmacion-texto">
           Tu presencia es muy importante para nosotros 🧡<br>
           Confirma tu asistencia para que Thiago y su pandilla safari puedan preparar todo para tu llegada
         </div>
         <div class="botones-confirmacion">
-          <a href="https://wa.me/51902554500?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20la%20fiesta%20de%20Thiaguito%20🎈%20¡Estoy%20muy%20emocionado/a%20por%20celebrar%20con%20la%20pandilla%20safari!%20🦁🐘🦒" 
-             class="btn-confirmacion btn-whatsapp" target="_blank">
+          <a href="https://api.whatsapp.com/send?phone=51902554500&text=%C2%A1Hola!%20%F0%9F%8C%BF%F0%9F%A6%92%0AQuiero%20confirmar%20que%20voy%20a%20la%20fiesta%20safari%20de%20Thiago%20%F0%9F%8E%89%F0%9F%8E%82%0A%C2%A1Estoy%20s%C3%BAper%20emocionado%20por%20la%20aventura!%20%F0%9F%A6%81%F0%9F%90%98%F0%9F%90%BE" 
+            class="btn-confirmacion btn-whatsapp" target="_blank">
             <span class="btn-icono">💬</span>
             <span>Confirmar por WhatsApp</span>
           </a>
-          <a href="https://chat.whatsapp.com/CeHHrI8uSSJIJLWLdCSnzt?mode=wwt" 
+          <a href="https://chat.whatsapp.com/Ly84sq2T1A4B4bP1vAq6zq?mode=wwt" 
              class="btn-confirmacion btn-grupo" target="_blank">
             <span class="btn-icono">👥</span>
             <span>Unirse al Grupo</span>
@@ -1598,20 +1936,92 @@
           <div class="confirmacion-animal">🎉</div>
           <div class="confirmacion-animal">🎁</div>
           <div class="confirmacion-animal">📩</div>
-          <div class="confirmacion-animal"></div>
+          <div class="confirmacion-animal">🎈</div>
         </div>
       </div>
     </div>
 
-    <div class="despedida scroll-animado">
-      <p>¡Habrá muchas sorpresas y diversión! 🌈</p>
-      <h2>¡Te esperamos!</h2>
-      <br></br>
+    <div class="despedida scroll-animado rotacion">
+      <p class="texto-animado">¡Habrá muchas sorpresas y diversión! 🌈</p>
+      <h2 class="texto-animado">¡Te esperamos!</h2>
+      <br>
       <img src="imagenes/plimplimdespidiendose.png" alt="Plim Plim despidiéndose" />
     </div>
   </div>
 
+  <!-- 🔹 REPRODUCTOR DE MÚSICA CON ALTAVOZ ANIMADO -->
+  <div class="reproductor-musica">
+    <audio id="musicaFondo" loop>
+      <source src="musica/safari-feliz.mp3" type="audio/mpeg">
+      <source src="musica/safari-feliz.ogg" type="audio/ogg">
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+    <button id="btnMusica" class="btn-altavoz">
+      <span class="emoji-altavoz">🔇</span>
+    </button>
+  </div>
+
   <script>
+    // 🔹 SISTEMA MEJORADO DE ANIMACIÓN AL SCROLL
+    function observarElementos() {
+      const elementos = document.querySelectorAll('.scroll-animado');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Agregar delay escalonado basado en la posición
+            const rect = entry.target.getBoundingClientRect();
+            const delay = Math.min(rect.top / 100, 1) * 500;
+            
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+              
+              // Animación especial para elementos internos
+              animarElementosInternos(entry.target);
+            }, delay);
+            
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -10% 0px'
+      });
+      
+      elementos.forEach(elemento => {
+        observer.observe(elemento);
+      });
+    }
+
+    // 🔹 ANIMAR ELEMENTOS INTERNOS DE CADA SECCIÓN
+    function animarElementosInternos(seccion) {
+      // Animación escalonada para elementos de lista
+      const itemsLista = seccion.querySelectorAll('.item-lista');
+      itemsLista.forEach((item, index) => {
+        setTimeout(() => {
+          item.style.opacity = '1';
+          item.style.transform = 'translateX(0)';
+        }, index * 150);
+      });
+      
+      // Animación para textos
+      const textosAnimados = seccion.querySelectorAll('.texto-animado');
+      textosAnimados.forEach((texto, index) => {
+        setTimeout(() => {
+          texto.style.opacity = '1';
+          texto.style.transform = 'translateY(0)';
+        }, index * 200);
+      });
+      
+      // Animación para emojis
+      const emojisAnimados = seccion.querySelectorAll('.emoji-animado');
+      emojisAnimados.forEach((emoji, index) => {
+        setTimeout(() => {
+          emoji.style.opacity = '1';
+          emoji.style.transform = 'scale(1) rotate(0deg)';
+        }, index * 100 + 300);
+      });
+    }
+
     // 🔹 Contador regresivo MEJORADO
     const fechaEvento = new Date("Nov 8, 2025 18:30:00").getTime();
     
@@ -1697,14 +2107,142 @@
     crearDestellos();
     setInterval(crearDestellos, 6000);
 
-    // 🔹 ANIMACIÓN DE PELOTAS - CÓDIGO CORREGIDO
+    // 🔹 CONTROL DE MÚSICA CON ALTAVOZ ANIMADO
+    function inicializarMusicaAltavoz() {
+      const musica = document.getElementById('musicaFondo');
+      const btnMusica = document.getElementById('btnMusica');
+      const emojiAltavoz = document.querySelector('.emoji-altavoz');
+      
+      // Verificar si hay una decisión previa del usuario
+      const decisionMusica = localStorage.getItem('musicaDecision');
+      
+      // Configurar estado inicial
+      function configurarEstado(reproduciendo) {
+        if (reproduciendo) {
+          btnMusica.classList.add('reproduciendo');
+          emojiAltavoz.textContent = '🔊';
+        } else {
+          btnMusica.classList.remove('reproduciendo');
+          emojiAltavoz.textContent = '🔇';
+        }
+      }
+      
+      // Si el usuario ya activó la música anteriormente, intentar reproducir
+      if (decisionMusica === 'activada') {
+        const promise = musica.play();
+        if (promise !== undefined) {
+          promise.then(() => {
+            // Reproducción exitosa
+            configurarEstado(true);
+          }).catch(error => {
+            // Reproducción bloqueada por el navegador
+            console.log('Reproducción automática bloqueada:', error);
+            configurarEstado(false);
+            localStorage.setItem('musicaDecision', 'desactivada');
+          });
+        }
+      } else {
+        configurarEstado(false);
+      }
+      
+      // Manejar clic en el botón
+      btnMusica.addEventListener('click', function() {
+        if (musica.paused) {
+          // Intentar reproducir
+          const promise = musica.play();
+          if (promise !== undefined) {
+            promise.then(() => {
+              // Reproducción exitosa
+              configurarEstado(true);
+              localStorage.setItem('musicaDecision', 'activada');
+            }).catch(error => {
+              // Error al reproducir
+              console.log('Error al reproducir música:', error);
+              mostrarMensajeError();
+            });
+          }
+        } else {
+          // Pausar música
+          musica.pause();
+          configurarEstado(false);
+          localStorage.setItem('musicaDecision', 'desactivada');
+        }
+      });
+      
+      // Manejar errores de carga de audio
+      musica.addEventListener('error', function(e) {
+        console.error('Error al cargar el archivo de música:', e);
+        mostrarMensajeError();
+        btnMusica.style.display = 'none';
+      });
+      
+      // Función para mostrar mensaje de error
+      function mostrarMensajeError() {
+        // Crear mensaje temporal
+        const mensaje = document.createElement('div');
+        mensaje.textContent = '❌ Error al cargar la música';
+        mensaje.style.cssText = `
+          position: fixed;
+          top: 80px;
+          right: 20px;
+          background: rgba(255, 0, 0, 0.9);
+          color: white;
+          padding: 10px 15px;
+          border-radius: 10px;
+          font-family: 'Patrick Hand', cursive;
+          font-size: 0.9em;
+          z-index: 1001;
+          animation: aparecerMensaje 0.3s ease;
+        `;
+        
+        document.body.appendChild(mensaje);
+        
+        // Remover mensaje después de 3 segundos
+        setTimeout(() => {
+          mensaje.style.animation = 'desaparecerMensaje 0.3s ease';
+          setTimeout(() => {
+            if (mensaje.parentNode) {
+              mensaje.parentNode.removeChild(mensaje);
+            }
+          }, 300);
+        }, 3000);
+      }
+    }
+
+    // Agregar animaciones para mensajes
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes aparecerMensaje {
+        from {
+          opacity: 0;
+          transform: translateX(100px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      
+      @keyframes desaparecerMensaje {
+        from {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        to {
+          opacity: 0;
+          transform: translateX(100px);
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // 🔹 ANIMACIÓN DE PELOTAS - CÓDIGO CORREGIDO (se mantiene igual)
     const pelotasContainer = document.getElementById("pelotas");
     const areaPelotas = document.querySelector('.area-pelotas');
     const pelotas = [];
     
-    //const tamanosBurbujas = [70, 85, 100, 115, 130];
     const tamanosBurbujas = [150, 150, 150, 150, 150];
-    const maxBurbujas = 999999; // Prácticamente sin límite
+    const maxBurbujas = 999999;
     
     const imagenesDisponibles = [
       'imagenes/thiago1.jpeg', 'imagenes/thiago2.jpeg', 'imagenes/thiago3.jpeg', 'imagenes/thiago5.jpg', 'imagenes/thiago6.jpg', 'imagenes/thiago7.jpg', 'imagenes/thiago8.jpg', 'imagenes/thiago9.jpeg', 
@@ -1717,8 +2255,7 @@
 
     let siguienteId = 0;
     let tiempoUltimaCreacion = 0;
-    //const intervaloCreacion = 1500;
-    const intervaloCreacion = 1000; // Crear burbujas más rápido
+    const intervaloCreacion = 1000;
 
     function obtenerAreaPelotas() {
       return {
@@ -1745,7 +2282,7 @@
     function obtenerPosicionValida(radio) {
       const area = obtenerAreaPelotas();
       const margenSeguridad = radio * 1.2;
-      const margenBorde = 60; // Mantener las pelotas alejadas del borde
+      const margenBorde = 60;
       
       let mejorPosicion = null;
       let mejorDistancia = 0;
@@ -1892,9 +2429,6 @@
     function reventarBurbuja(pelota) {
       if (pelota.reventando || pelota.naciendo) return;
       
-      //pelota.reventando = true;
-      //pelota.el.classList.add('reventando');
-      
       setTimeout(() => {
         const indice = pelotas.indexOf(pelota);
         if (indice > -1) {
@@ -1954,7 +2488,7 @@
 
     function animar() {
       const area = obtenerAreaPelotas();
-      const margenBorde = 20; // Margen pequeño para el rebote suave
+      const margenBorde = 20;
       
       for (let i = 0; i < pelotas.length; i++) {
         const p = pelotas[i];
@@ -1966,18 +2500,18 @@
 
         // Mantener las pelotas dentro del área con rebote suave
         if (p.x <= margenBorde) {
-          p.dx = Math.abs(p.dx) * 0.95; // Asegura movimiento hacia la derecha
+          p.dx = Math.abs(p.dx) * 0.95;
           p.x = margenBorde;
         } else if (p.x + p.tamanio >= area.width - margenBorde) {
-          p.dx = -Math.abs(p.dx) * 0.95; // Asegura movimiento hacia la izquierda
+          p.dx = -Math.abs(p.dx) * 0.95;
           p.x = area.width - p.tamanio - margenBorde;
         }
         
         if (p.y <= margenBorde) {
-          p.dy = Math.abs(p.dy) * 0.95; // Asegura movimiento hacia abajo
+          p.dy = Math.abs(p.dy) * 0.95;
           p.y = margenBorde;
         } else if (p.y + p.tamanio >= area.height - margenBorde) {
-          p.dy = -Math.abs(p.dy) * 0.95; // Asegura movimiento hacia arriba
+          p.dy = -Math.abs(p.dy) * 0.95;
           p.y = area.height - p.tamanio - margenBorde;
         }
 
@@ -2003,29 +2537,11 @@
       crearIniciales();
     }
 
-    // 🔹 ANIMACIÓN AL SCROLL
-    function observarElementos() {
-      const elementos = document.querySelectorAll('.scroll-animado');
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      });
-      
-      elementos.forEach(elemento => {
-        observer.observe(elemento);
-      });
-    }
-
+    // Inicializar cuando cargue la página
     window.addEventListener('load', function() {
+      inicializarMusicaAltavoz();
       inicializarBurbujas();
-      observarElementos();
+      observarElementos(); // Sistema mejorado de animaciones
     });
     
     window.addEventListener('resize', function() {
@@ -2033,7 +2549,6 @@
       pelotas.length = 0;
       setTimeout(inicializarBurbujas, 500);
     });
-
   </script>
 </body>
 </html>
