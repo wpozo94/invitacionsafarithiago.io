@@ -1,0 +1,2039 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invitación Safari de Thiago</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rye&family=Fredoka+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Chewy&family=Patrick+Hand&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: 
+        linear-gradient(rgba(26, 92, 58, 0.5), rgba(45, 122, 82, 0.5)),
+        url('imagenes/bosqueplimplim1920x1080.png') center/cover fixed;
+    }
+    .container {
+      text-align: center;
+      position: relative;
+      padding: 20px;
+      z-index: 2;
+    }
+
+    /* 🔹 Portada - ANIMACIONES SIN FONDO */
+    .portada {
+      position: relative;
+      margin-top: 20px;
+      animation: fadeIn 2s ease-in-out;
+      z-index: 10;
+      perspective: 1000px;
+    }
+
+    .marco-animado {
+      position: relative;
+      display: inline-block;
+      animation: flotarSuave 6s ease-in-out infinite;
+      filter: drop-shadow(0 10px 25px rgba(139, 69, 19, 0.4));
+    }
+
+    .portada img {
+      width: 90%;
+      max-width: 700px;
+      position: relative;
+      z-index: 10;
+      animation: 
+        respiracion 4s ease-in-out infinite,
+        brilloSutil 8s ease-in-out infinite,
+        rotacionSuave 20s linear infinite;
+      transform-style: preserve-3d;
+    }
+
+    .portada h1 {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Rye', cursive;
+      font-size: 2.8em;
+      color: #fbe9c3;
+      text-shadow: 
+        3px 3px 6px rgba(0,0,0,0.5),
+        0 0 20px rgba(255, 215, 0, 0.8);
+      animation: tituloBrillante 3s ease-in-out infinite;
+      z-index: 11;
+    }
+
+    /* 🔹 TEXTO ANIMADO - NUEVO ESTILO */
+    .texto-magico {
+      margin: 20px auto;
+      max-width: 90%;
+      line-height: 1.6em;
+      z-index: 3;
+      position: relative;
+      padding: 15px 20px;
+    }
+
+    .linea-1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 9em;
+      color: #8B4513;
+      text-shadow: 
+        2px 2px 4px rgba(255, 255, 255, 0.8),
+        0 0 15px rgba(255, 215, 0, 0.6);
+      margin-bottom: 15px;
+      animation: aparecerTexto 2s ease-out 0.5s both,
+                 brilloTexto 4s ease-in-out infinite 2s;
+      line-height: 1.3;
+    }
+
+    .linea-2 {
+      font-family: 'Chewy', cursive;
+      font-size: 8em;
+      color: #1b6b3f;
+      text-shadow: 
+        2px 2px 4px rgba(255, 255, 255, 0.8),
+        0 0 12px rgba(107, 203, 119, 0.6);
+      animation: aparecerTexto 2s ease-out 1s both,
+                 brilloTextoVerde 5s ease-in-out infinite 2.5s;
+      line-height: 1.3;
+    }
+
+    .emojis-linea {
+      display: block;
+      margin: 10px 0;
+      text-align: center;
+      animation: aparecerEmojis 1.5s ease-out 1.2s both;
+    }
+
+    .emoji {
+      display: inline-block;
+      animation: 
+        girarEmoji 3s ease-in-out infinite 2s,
+        brilloEmoji 2s ease-in-out infinite 2s;
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+      margin: 0 10px;
+      font-size: 1.5em;
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    /* === NUEVA SECCIÓN: AMIGOS SAFARI === */
+    .amigos-safari {
+      margin: 40px auto;
+      padding: 30px 20px;
+      max-width: 1200px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .amigos-safari h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 7em;
+      color: #8B4513;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+      animation: aparecerDesdeAbajo 1.5s ease-out 0.5s both;
+    }
+
+    .amigos-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      perspective: 1000px;
+    }
+
+    .amigo-card {
+      position: relative;
+      width: 180px;
+      height: 220px;
+      animation: aparecerAmigo 1s ease-out both;
+      transform-style: preserve-3d;
+    }
+
+    .amigo-card:nth-child(1) { animation-delay: 0.7s; }
+    .amigo-card:nth-child(2) { animation-delay: 0.9s; }
+    .amigo-card:nth-child(3) { animation-delay: 1.1s; }
+    .amigo-card:nth-child(4) { animation-delay: 1.3s; }
+    .amigo-card:nth-child(5) { animation-delay: 1.5s; }
+
+    .amigo-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.6s ease;
+    }
+
+    .amigo-card:hover .amigo-inner {
+      transform: rotateY(180deg) scale(1.05);
+    }
+
+    .amigo-front, .amigo-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      box-shadow: 
+        0 10px 25px rgba(139, 69, 19, 0.3),
+        0 5px 15px rgba(255, 255, 255, 0.2);
+    }
+
+    .amigo-front {
+      background: linear-gradient(135deg, #8B4513, #D2691E);
+      border: 4px solid #fbe9c3;
+      transform: rotateY(0deg);
+    }
+
+    .amigo-back {
+      background: linear-gradient(135deg, #1b6b3f, #6dd66d);
+      border: 4px solid #ffd700;
+      transform: rotateY(180deg);
+      text-align: center;
+    }
+
+    .amigo-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #fbe9c3;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+      margin-bottom: 10px;
+      animation: flotarAmigo 4s ease-in-out infinite;
+    }
+
+    .amigo-card:nth-child(1) .amigo-img { animation-delay: 0s; }
+    .amigo-card:nth-child(2) .amigo-img { animation-delay: 0.8s; }
+    .amigo-card:nth-child(3) .amigo-img { animation-delay: 1.6s; }
+    .amigo-card:nth-child(4) .amigo-img { animation-delay: 2.4s; }
+    .amigo-card:nth-child(5) .amigo-img { animation-delay: 3.2s; }
+
+    .amigo-nombre {
+      font-family: 'Chewy', cursive;
+      font-size: 2.5em;
+      color: #fbe9c3;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      margin-top: 5px;
+    }
+
+    .amigo-descripcion {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1em;
+      color: #fbe9c3;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      line-height: 1.2;
+    }
+
+    .amigo-emoji {
+      font-size: 2em;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+    }
+
+    /* === NUEVA SECCIÓN: DETALLES DEL EVENTO === */
+    .detalles-evento {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 500px;
+      margin: 40px auto;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      animation: aparecerDesdeAbajo 2s ease-out 0.8s both;
+      z-index: 3;
+      position: relative;
+      border: 3px solid #fbe9c3;
+    }
+
+    .detalles-evento h2 {
+      font-family: 'Fredoka One', cursive;
+      color: #8B4513;
+      margin-bottom: 20px;
+      font-size: 3em;
+      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+    }
+
+    .detalles-evento p {
+      font-size: 1.2em;
+      margin: 12px 0;
+      font-family: 'Patrick Hand', cursive;
+      color: #2c3e50;
+      text-align: left;
+      padding-left: 20px;
+    }
+
+    .detalles-evento strong {
+      color: #8B4513;
+      font-family: 'Chewy', cursive;
+    }
+
+    /* === NUEVA SECCIÓN: CONTADOR REGRESIVO MEJORADO === */
+    .contador-safari {
+      margin: 50px auto;
+      padding: 40px 20px;
+      max-width: 800px;
+      position: relative;
+      z-index: 3;
+      animation: aparecerDesdeAbajo 2s ease-out 1s both;
+    }
+
+    .contador-safari h2 {
+      font-family: 'Fredoka One', cursive;
+      color: #8B4513;
+      margin-bottom: 30px;
+      font-size:4.5em;
+      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+    }
+
+    .contador-container {
+      background: linear-gradient(135deg, #8B4513, #D2691E);
+      border-radius: 25px;
+      padding: 40px 30px;
+      box-shadow: 
+        0 15px 35px rgba(139, 69, 19, 0.4),
+        inset 0 2px 10px rgba(255, 255, 255, 0.3);
+      border: 5px solid #fbe9c3;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contador-container::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: linear-gradient(45deg, #ffd700, #ffec8b, #ffd700);
+      z-index: -1;
+      border-radius: 30px;
+      animation: brilloBorde 3s ease-in-out infinite;
+    }
+
+    .contador-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+
+    .contador-item {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      padding: 20px 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      border: 3px solid #ffd700;
+      transition: transform 0.3s ease;
+    }
+
+    .contador-item:hover {
+      transform: translateY(-5px) scale(1.05);
+    }
+
+    .contador-numero {
+      font-family: 'Chewy', cursive;
+      font-size: 3.5em;
+      color: #8B4513;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      line-height: 1;
+      margin-bottom: 5px;
+      animation: latidoNumero 2s ease-in-out infinite;
+    }
+
+    .contador-item:nth-child(1) .contador-numero { animation-delay: 0s; }
+    .contador-item:nth-child(2) .contador-numero { animation-delay: 0.5s; }
+    .contador-item:nth-child(3) .contador-numero { animation-delay: 1s; }
+    .contador-item:nth-child(4) .contador-numero { animation-delay: 1.5s; }
+
+    .contador-label {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1.3em;
+      color: #1b6b3f;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .contador-mensaje {
+      font-family: 'Chewy', cursive;
+      font-size: 1.8em;
+      color: #fbe9c3;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      margin-top: 15px;
+    }
+
+    .animales-decoracion {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .animal-emoji {
+      font-size: 3em;
+      animation: flotarAnimal 4s ease-in-out infinite;
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+    }
+
+    .animal-emoji:nth-child(1) { animation-delay: 0s; }
+    .animal-emoji:nth-child(2) { animation-delay: 0.8s; }
+    .animal-emoji:nth-child(3) { animation-delay: 1.6s; }
+    .animal-emoji:nth-child(4) { animation-delay: 2.4s; }
+    .animal-emoji:nth-child(5) { animation-delay: 3.2s; }
+
+    /* === NUEVA SECCIÓN: UBICACIÓN INTERACTIVA === */
+    .ubicacion-interactiva {
+      margin: 40px auto;
+      max-width: 600px;
+      text-align: center;
+      z-index: 3;
+      position: relative;
+      animation: aparecerDesdeAbajo 2s ease-out 1.2s both;
+    }
+
+    .ubicacion-interactiva h2 {
+      font-family: 'Fredoka One', cursive;
+      color: #8B4513;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+      font-size: 2.2em;
+    }
+
+    .mapa-cuadro {
+      background: linear-gradient(135deg, #8B4513, #D2691E);
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 10px 25px rgba(139, 69, 19, 0.3);
+      border: 4px solid #fbe9c3;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: block;
+    }
+
+    .mapa-cuadro:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 30px rgba(139, 69, 19, 0.5);
+    }
+
+    .mapa-icono {
+      font-size: 3.5em;
+      margin-bottom: 15px;
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+      display: block;
+    }
+
+    .mapa-texto {
+      font-family: 'Chewy', cursive;
+      font-size: 1.8em;
+      color: #fbe9c3;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      margin-bottom: 10px;
+    }
+
+    .mapa-direccion {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1.2em;
+      color: #fbe9c3;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    /* === NUEVA SECCIÓN: CONFIRMACIÓN MEJORADA === */
+    .confirmacion-safari {
+      margin: 50px auto;
+      padding: 40px 20px;
+      max-width: 800px;
+      position: relative;
+      z-index: 3;
+      animation: aparecerDesdeAbajo 2s ease-out 1.4s both;
+    }
+
+    .confirmacion-safari h2 {
+      font-family: 'Fredoka One', cursive;
+      color: #8B4513;
+      margin-bottom: 30px;
+      font-size: 4.5em;
+      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+    }
+
+    .confirmacion-container {
+      background: linear-gradient(135deg, #1b6b3f, #6dd66d);
+      border-radius: 25px;
+      padding: 40px 30px;
+      box-shadow: 
+        0 15px 35px rgba(27, 107, 63, 0.4),
+        inset 0 2px 10px rgba(255, 255, 255, 0.3);
+      border: 5px solid #ffd700;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .confirmacion-container::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: linear-gradient(45deg, #ffd700, #ffec8b, #ffd700);
+      z-index: -1;
+      border-radius: 30px;
+      animation: brilloBorde 3s ease-in-out infinite;
+    }
+
+    .confirmacion-texto {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1.8em;
+      color: #fbe9c3;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      margin-bottom: 30px;
+      line-height: 1.5;
+    }
+
+    .botones-confirmacion {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .btn-confirmacion {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      text-decoration: none;
+      background: linear-gradient(135deg, #8B4513, #D2691E);
+      color: #fbe9c3;
+      padding: 18px 30px;
+      border-radius: 50px;
+      font-family: 'Chewy', cursive;
+      font-size: 1.5em;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(139, 69, 19, 0.4);
+      border: 3px solid #ffd700;
+      min-width: 280px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-confirmacion::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn-confirmacion:hover::before {
+      left: 100%;
+    }
+
+    .btn-confirmacion:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 12px 25px rgba(139, 69, 19, 0.6);
+    }
+
+    .btn-confirmacion:active {
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+    }
+
+    .btn-grupo {
+      background: linear-gradient(135deg, #8B4513, #D2691E);
+    }
+
+    .btn-icono {
+      font-size: 1.8em;
+      filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+    }
+
+    .confirmacion-animales {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 25px;
+    }
+
+    .confirmacion-animal {
+      font-size: 3em;
+      animation: flotarAnimal 4s ease-in-out infinite;
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+    }
+
+    .confirmacion-animal:nth-child(1) { animation-delay: 0s; }
+    .confirmacion-animal:nth-child(2) { animation-delay: 0.8s; }
+    .confirmacion-animal:nth-child(3) { animation-delay: 1.6s; }
+    .confirmacion-animal:nth-child(4) { animation-delay: 2.4s; }
+    .confirmacion-animal:nth-child(5) { animation-delay: 3.2s; }
+
+    /* Animaciones para el contador */
+    @keyframes latidoNumero {
+      0%, 100% { 
+        transform: scale(1);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+      50% { 
+        transform: scale(1.1);
+        text-shadow: 
+          2px 2px 4px rgba(0, 0, 0, 0.2),
+          0 0 15px rgba(255, 215, 0, 0.8);
+      }
+    }
+
+    @keyframes brilloBorde {
+      0%, 100% { 
+        opacity: 0.7;
+        transform: scale(1);
+      }
+      50% { 
+        opacity: 1;
+        transform: scale(1.02);
+      }
+    }
+
+    @keyframes flotarAnimal {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      25% {
+        transform: translateY(-10px) rotate(5deg);
+      }
+      75% {
+        transform: translateY(-5px) rotate(-5deg);
+      }
+    }
+
+    /* Resto de animaciones... */
+    @keyframes aparecerAmigo {
+      0% {
+        opacity: 0;
+        transform: translateY(50px) rotateX(-30deg) scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg) scale(1);
+      }
+    }
+
+    @keyframes flotarAmigo {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      25% {
+        transform: translateY(-8px) rotate(2deg);
+      }
+      75% {
+        transform: translateY(-4px) rotate(-2deg);
+      }
+    }
+
+    @keyframes aparecerEmojis {
+      0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes aparecerTexto {
+      0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.8);
+        filter: blur(5px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0px);
+      }
+    }
+
+    @keyframes brilloTexto {
+      0%, 100% {
+        text-shadow: 
+          2px 2px 4px rgba(255, 255, 255, 0.8),
+          0 0 15px rgba(255, 215, 0, 0.6);
+      }
+      50% {
+        text-shadow: 
+          2px 2px 4px rgba(255, 255, 255, 0.8),
+          0 0 25px rgba(255, 215, 0, 0.9),
+          0 0 35px rgba(255, 215, 0, 0.7);
+      }
+    }
+
+    @keyframes brilloTextoVerde {
+      0%, 100% {
+        text-shadow: 
+          2px 2px 4px rgba(255, 255, 255, 0.8),
+          0 0 12px rgba(107, 203, 119, 0.6);
+      }
+      50% {
+        text-shadow: 
+          2px 2px 4px rgba(255, 255, 255, 0.8),
+          0 0 20px rgba(107, 203, 119, 0.9),
+          0 0 30px rgba(107, 203, 119, 0.7);
+      }
+    }
+
+    @keyframes girarEmoji {
+      0%, 100% {
+        transform: rotate(0deg) scale(1);
+      }
+      25% {
+        transform: rotate(5deg) scale(1.1);
+      }
+      75% {
+        transform: rotate(-5deg) scale(1.1);
+      }
+    }
+
+    @keyframes brilloEmoji {
+      0%, 100% {
+        filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+      }
+      50% {
+        filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1)) 
+                drop-shadow(0 0 25px rgba(255, 215, 0, 0.8));
+      }
+    }
+
+    /* Efectos de destellos de luz */
+    .destellos-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .destello {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: radial-gradient(circle, #ffffff, #ffd700, transparent);
+      border-radius: 50%;
+      animation: destelloMovil 3s ease-out infinite;
+      opacity: 0;
+    }
+
+    .destello.estrella {
+      width: 6px;
+      height: 6px;
+      background: radial-gradient(circle, #ffffff, #ffec8b, transparent);
+      animation: estrellaBrillante 4s ease-in-out infinite;
+    }
+
+    .destello.rayo {
+      width: 3px;
+      height: 20px;
+      background: linear-gradient(to bottom, transparent, #ffffff, #ffd700, #ffffff, transparent);
+      border-radius: 2px;
+      animation: rayoDestello 2s ease-out infinite;
+    }
+
+    @keyframes destelloMovil {
+      0% {
+        transform: translate(0, 0) scale(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+        transform: translate(10px, -15px) scale(1);
+      }
+      30% {
+        opacity: 0.8;
+        transform: translate(25px, -30px) scale(1.2);
+      }
+      50% {
+        opacity: 0.6;
+        transform: translate(40px, -45px) scale(1);
+      }
+      70% {
+        opacity: 0.4;
+        transform: translate(55px, -60px) scale(0.8);
+      }
+      100% {
+        transform: translate(70px, -75px) scale(0);
+        opacity: 0;
+      }
+    }
+
+    @keyframes estrellaBrillante {
+      0%, 100% {
+        transform: scale(0.5) rotate(0deg);
+        opacity: 0;
+        box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+      }
+      25% {
+        opacity: 1;
+        transform: scale(1.2) rotate(90deg);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+      }
+      50% {
+        opacity: 0.8;
+        transform: scale(1) rotate(180deg);
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+      }
+      75% {
+        opacity: 0.6;
+        transform: scale(0.8) rotate(270deg);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+      }
+    }
+
+    @keyframes rayoDestello {
+      0%, 100% {
+        transform: translateY(-20px) rotate(45deg) scaleY(0);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+        transform: translateY(-10px) rotate(45deg) scaleY(1);
+      }
+      40% {
+        opacity: 0.8;
+        transform: translateY(0) rotate(45deg) scaleY(1.2);
+      }
+      60% {
+        opacity: 0.6;
+        transform: translateY(10px) rotate(45deg) scaleY(1);
+      }
+      80% {
+        opacity: 0.4;
+        transform: translateY(20px) rotate(45deg) scaleY(0.8);
+      }
+    }
+
+    /* 🔹 ÁREA DE PELOTAS - ESTILOS CORREGIDOS */
+    .area-pelotas {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      margin: 0 auto;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .pelotas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .pelota {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #fff;
+      box-shadow: 
+        0 0 20px rgba(255,255,255,0.8),
+        inset 0 0 20px rgba(255,255,255,0.3),
+        0 4px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      z-index: 1;
+      opacity: 0;
+      transform: scale(0.8);
+      filter: brightness(1.1) contrast(1.1);
+    }
+
+    .pelota.naciendo {
+      animation: nacerPelota 1.5s ease-out forwards;
+    }
+
+    .pelota.reventando {
+      animation: reventarBurbuja 0.6s ease-out forwards;
+      pointer-events: none;
+    }
+
+    .pelota img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 50%;
+    }
+
+    /* ANIMACIONES CORREGIDAS PARA PELOTAS */
+    @keyframes nacerPelota {
+      0% { 
+        transform: scale(0.8) translate(var(--start-x, 0px), var(--start-y, 0px)); 
+        opacity: 0; 
+      }
+      60% { 
+        transform: scale(1.1) translate(var(--target-x, 0px), var(--target-y, 0px)); 
+        opacity: 0.9; 
+      }
+      100% { 
+        transform: scale(1) translate(var(--target-x, 0px), var(--target-y, 0px)); 
+        opacity: 1; 
+      }
+    }
+
+    @keyframes reventarBurbuja {
+      0% { 
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+        filter: brightness(1.2) blur(0px);
+      }
+      30% {
+        transform: scale(1.3) rotate(5deg);
+        opacity: 0.9;
+        filter: brightness(1.5) blur(1px);
+      }
+      50% {
+        transform: scale(1.1) rotate(-5deg);
+        opacity: 0.8;
+        filter: brightness(1.8) blur(2px);
+      }
+      70% {
+        transform: scale(1.4) rotate(3deg);
+        opacity: 0.6;
+        filter: brightness(2) blur(3px);
+        box-shadow: 0 0 30px rgba(255,255,255,1);
+      }
+      90% {
+        transform: scale(1.6) rotate(-2deg);
+        opacity: 0.3;
+        filter: brightness(2.5) blur(4px);
+        box-shadow: 0 0 40px rgba(255,255,255,0.8);
+      }
+      100% { 
+        transform: scale(2) rotate(0deg);
+        opacity: 0;
+        filter: brightness(3) blur(5px);
+        box-shadow: 0 0 50px rgba(255,255,255,0);
+      }
+    }
+
+    /* Animaciones de la portada */
+    @keyframes flotarSuave {
+      0%, 100% { 
+        transform: translateY(0px) rotateX(0deg) rotateY(0deg); 
+      }
+      25% { 
+        transform: translateY(-12px) rotateX(2deg) rotateY(1deg); 
+      }
+      50% { 
+        transform: translateY(-6px) rotateX(-1deg) rotateY(-1deg); 
+      }
+      75% { 
+        transform: translateY(-8px) rotateX(1deg) rotateY(-0.5deg); 
+      }
+    }
+
+    @keyframes respiracion {
+      0%, 100% { 
+        transform: scale(1);
+        filter: brightness(1) drop-shadow(0 5px 15px rgba(139, 69, 19, 0.3));
+      }
+      50% { 
+        transform: scale(1.03);
+        filter: brightness(1.05) drop-shadow(0 8px 25px rgba(139, 69, 19, 0.5));
+      }
+    }
+
+    @keyframes brilloSutil {
+      0%, 100% { 
+        filter: brightness(1) drop-shadow(0 5px 15px rgba(255, 215, 0, 0.3));
+      }
+      25% { 
+        filter: brightness(1.02) drop-shadow(0 6px 18px rgba(255, 215, 0, 0.4));
+      }
+      50% { 
+        filter: brightness(1.04) drop-shadow(0 7px 20px rgba(255, 215, 0, 0.5));
+      }
+      75% { 
+        filter: brightness(1.02) drop-shadow(0 6px 18px rgba(255, 215, 0, 0.4));
+      }
+    }
+
+    @keyframes tituloBrillante {
+      0%, 100% { 
+        text-shadow: 
+          3px 3px 6px rgba(0,0,0,0.5),
+          0 0 20px rgba(255, 215, 0, 0.8);
+        transform: translateX(-50%) scale(1);
+      }
+      50% { 
+        text-shadow: 
+          3px 3px 6px rgba(0,0,0,0.5),
+          0 0 30px rgba(255, 215, 0, 1),
+          0 0 40px rgba(255, 215, 0, 0.6);
+        transform: translateX(-50%) scale(1.05);
+      }
+    }
+
+    /* 🔹 Resto de estilos */
+    @keyframes aparecerDesdeAbajo {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .despedida {
+      margin: 40px auto;
+      font-family: 'Fredoka One', cursive;
+      color: #2c3e50;
+      font-size: 3em;
+      z-index: 3;
+      position: relative;
+      animation: aparecerDesdeAbajo 2s ease-out 1.6s both;
+    }
+
+    .despedida img {
+      width: 370px;
+      animation: saludo 3s infinite ease-in-out;
+    }
+
+    @keyframes saludo {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* 🔹 CLASES PARA ANIMACIÓN AL SCROLL */
+    .scroll-animado {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
+    }
+
+    .scroll-animado.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 🔹 MEDIA QUERIES - CORREGIDAS PARA MÓVIL */
+    @media (max-width: 768px) {
+      body {
+        background: 
+          linear-gradient(rgba(26, 92, 58, 0.6), rgba(45, 122, 82, 0.6)),
+          url('imagenes/bosqueplimplim800x1400.png') center/cover scroll;
+      }
+      .portada img { 
+        width: 95%;
+        max-width: none;
+      }
+      .portada h1 {
+        font-size: 1.8em;
+        bottom: 15px;
+      }
+      
+      /* Ajustes para amigos en tablet */
+      .amigos-safari {
+        margin: 30px auto;
+        padding: 20px 15px;
+      }
+      
+      .amigos-container {
+        gap: 20px;
+      }
+      
+      .amigo-card {
+        width: 150px;
+        height: 190px;
+      }
+      
+      .amigo-img {
+        width: 80px;
+        height: 80px;
+      }
+      
+      .amigo-nombre {
+        font-size: 1.1em;
+      }
+      
+      .amigo-descripcion {
+        font-size: 0.9em;
+      }
+
+      .texto-magico {
+        margin: 15px auto !important;
+        padding: 10px 15px !important;
+      }
+      
+      .linea-1 {
+        font-size: 4.5em !important;
+        line-height: 1.4 !important;
+        margin-bottom: 10px !important;
+      }
+      
+      .linea-2 {
+        font-size: 3.5em !important;
+        line-height: 1.4 !important;
+        margin-bottom: 15px !important;
+      }
+      
+      .emojis-linea {
+        display: block !important;
+        margin: 12px 0 !important;
+      }
+      
+      .emoji {
+        font-size: 2em !important;
+        margin: 0 15px !important;
+      }
+      
+      .pelota {
+        width: 90px;
+        height: 90px;
+      }
+      
+      /* Ajustes para contador en tablet */
+      .contador-safari {
+        margin: 30px auto;
+        padding: 30px 15px;
+      }
+      
+      .contador-grid {
+        gap: 15px;
+      }
+      
+      .contador-numero {
+        font-size: 2.8em;
+      }
+      
+      .contador-label {
+        font-size: 1.1em;
+      }
+      
+      .contador-mensaje {
+        font-size: 1.5em;
+      }
+      
+      .animal-emoji {
+        font-size: 2.5em;
+      }
+      
+      /* Ajustes para confirmación en tablet */
+      .confirmacion-safari {
+        margin: 30px auto;
+        padding: 30px 15px;
+      }
+      
+      .botones-confirmacion {
+        gap: 15px;
+      }
+      
+      .btn-confirmacion {
+        min-width: 240px;
+        padding: 15px 25px;
+        font-size: 1.3em;
+      }
+      
+      .confirmacion-texto {
+        font-size: 1.5em;
+      }
+      
+      .detalles-evento { 
+        width: 95%;
+        padding: 20px;
+        margin: 25px auto;
+      }
+      
+      .detalles-evento h2 {
+        font-size: 3em;
+      }
+      
+      .detalles-evento p {
+        font-size: 2.1em;
+      }
+      
+      .mapa-texto {
+        font-size: 1.5em;
+      }
+      
+      .mapa-direccion {
+        font-size: 1.1em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        background-image: url('imagenes/bosqueplimplim800x1400.png');
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+      }
+
+      
+      .portada h1 {
+        font-size: 1.4em;
+        bottom: 10px;
+      }
+      
+      /* Ajustes para amigos en móvil */
+      .amigos-safari {
+        margin: 20px auto;
+        padding: 15px 10px;
+      }
+
+      .amigos-safari h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+      }
+      
+      .amigos-container {
+        gap: 15px;
+      }
+      
+      .amigo-card {
+        width: 130px;
+        height: 170px;
+      }
+      
+      .amigo-img {
+        width: 70px;
+        height: 70px;
+      }
+      
+      .amigo-nombre {
+        font-size: 1em;
+      }
+      
+      .amigo-descripcion {
+        font-size: 0.8em;
+      }
+
+      .texto-magico {
+        margin: 10px auto !important;
+        padding: 8px 12px !important;
+      }
+      
+      .linea-1 {
+        font-size: 3.5em !important;
+        line-height: 1.3 !important;
+        margin-bottom: 8px !important;
+      }
+      
+      .linea-2 {
+        font-size: 2.5em !important;
+        line-height: 1.3 !important;
+        margin-bottom: 12px !important;
+      }
+      
+      .emojis-linea {
+        display: block !important;
+        margin: 10px 0 !important;
+      }
+      
+      .emoji {
+        font-size: 1.8em !important;
+        margin: 0 12px !important;
+      }
+      
+      .pelota {
+        width: 70px;
+        height: 70px;
+      }
+      
+      /* Ajustes para contador en móvil */
+      .contador-safari {
+        margin: 25px auto;
+        padding: 25px 10px;
+      }
+      
+      .contador-safari h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+      }
+      
+      .contador-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      
+      .contador-item {
+        padding: 15px 10px;
+      }
+      
+      .contador-numero {
+        font-size: 2.2em;
+      }
+      
+      .contador-label {
+        font-size: 1em;
+      }
+      
+      .contador-mensaje {
+        font-size: 1.3em;
+      }
+      
+      .animal-emoji {
+        font-size: 2em;
+      }
+      
+      .animales-decoracion {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      
+      /* Ajustes para confirmación en móvil */
+      .confirmacion-safari {
+        margin: 25px auto;
+        padding: 25px 10px;
+      }
+      
+      .confirmacion-safari h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+      }
+      
+      .botones-confirmacion {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .btn-confirmacion {
+        min-width: 100%;
+        padding: 15px 20px;
+        font-size: 1.2em;
+      }
+      
+      .confirmacion-texto {
+        font-size: 1.3em;
+      }
+      
+      .confirmacion-animal {
+        font-size: 2em;
+      }
+      
+      .detalles-evento { 
+        padding: 15px;
+        margin: 20px auto;
+      }
+      
+      .detalles-evento h2 {
+        font-size: 2.6em;
+      }
+      
+      .detalles-evento p {
+        font-size: 2em;
+        padding-left: 15px;
+      }
+      
+      .mapa-texto {
+        font-size: 1.3em;
+      }
+      
+      .mapa-direccion {
+        font-size: 1em;
+      }
+      
+      .mapa-cuadro {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 360px) {
+     
+      .linea-1 {
+        font-size: 2em !important;
+        line-height: 1.2 !important;
+      }
+      
+      .linea-2 {
+        font-size: 1.3em !important;
+        line-height: 1.2 !important;
+      }
+      
+      .emojis-linea {
+        margin: 8px 0 !important;
+      }
+      
+      .emoji {
+        font-size: 1.6em !important;
+        margin: 0 10px !important;
+      }
+      
+      .pelota {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .contador-numero {
+        font-size: 1.8em;
+      }
+      
+      .contador-label {
+        font-size: 0.9em;
+      }
+      
+      .detalles-evento h2 {
+        font-size: 1.4em;
+      }
+      
+      .detalles-evento p {
+        font-size: 0.9em;
+        padding-left: 10px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="portada">
+      <div class="marco-animado">
+        <img src="imagenes/bienvenida_thiagocumple.png" alt="Plim Plim Safari" id="imagenPortada" />
+      </div>
+    </div>
+
+    <div class="area-pelotas">
+      <div class="pelotas" id="pelotas"></div>
+    </div>
+
+    <!-- NUEVO TEXTO ANIMADO - ESTRUCTURA MODIFICADA PARA MÓVIL -->
+    <div class="texto-magico scroll-animado">
+      <div class="destellos-container" id="destellosTexto"></div>
+      
+      <!-- Línea 1 - Texto principal -->
+      <div class="linea-1">
+        Un añito de amor, ternura y sonrisas
+      </div>
+      
+      <!-- Línea separada para emojis en móvil -->
+      <div class="emojis-linea">
+        <span class="emoji">🌈</span>
+        <span class="emoji">✨</span>
+      </div>
+      
+      <!-- Línea 2 - Texto secundario -->
+      <div class="linea-2">
+        Plim Plim y su pandilla del safari te esperan para compartir esta gran celebración.
+      </div>
+    </div>
+
+    <!-- === NUEVA SECCIÓN: AMIGOS SAFARI === -->
+    <div class="amigos-safari scroll-animado">
+      <h2>¡La Pandilla Safari!</h2>
+      <div class="amigos-container">
+        <!-- Amigo 1 -->
+        <div class="amigo-card">
+          <div class="amigo-inner">
+            <div class="amigo-front">
+              <img src="imagenes/hoggie.png" alt="Hoggie" class="amigo-img">
+              <div class="amigo-nombre">Hoggie</div>
+            </div>
+            <div class="amigo-back">
+              <div class="amigo-emoji"><img src="imagenes/hoggie.png" alt="Lila" width="40px" height="40px"></div>
+              <div class="amigo-descripcion">El cerdito fuerte y alegre que ama jugar y proteger a sus amigos.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Amigo 2 -->
+        <div class="amigo-card">
+          <div class="amigo-inner">
+            <div class="amigo-front">
+              <img src="imagenes/nesho.png" alt="Nesho" class="amigo-img">
+              <div class="amigo-nombre">Nesho</div>
+            </div>
+            <div class="amigo-back">
+              <div class="amigo-emoji"><img src="imagenes/nesho.png" alt="Nesho" width="40px" height="40px"></div>
+              <div class="amigo-descripcion">El elefantito tierno que aprende a ser valiente con sus amigos.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Amigo 3 -->
+        <div class="amigo-card">
+          <div class="amigo-inner">
+            <div class="amigo-front">
+              <img src="imagenes/plim_plim.png" alt="Plim Plim" class="amigo-img">
+              <div class="amigo-nombre">Plim Plim</div>
+            </div>
+            <div class="amigo-back">
+              <div class="amigo-emoji"><img src="imagenes/plim_plim.png" alt="Plim Plim" width="40px" height="40px"></div>
+              <div class="amigo-descripcion">El payasito que enseña a sus amigos a ser felices y ayudar siempre.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Amigo 4 -->
+        <div class="amigo-card">
+          <div class="amigo-inner">
+            <div class="amigo-front">
+              <img src="imagenes/Mei-Li.png" alt="Mei-Li" class="amigo-img">
+              <div class="amigo-nombre">Mei-Li</div>
+            </div>
+            <div class="amigo-back">
+              <div class="amigo-emoji"><img src="imagenes/Mei-Li.png" alt="Mei-Li" width="40px" height="40px"></div>
+              <div class="amigo-descripcion">La gatita morada, curiosa y cariñosa, que adora jugar y ronronear.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Amigo 5 -->
+        <div class="amigo-card">
+          <div class="amigo-inner">
+            <div class="amigo-front">
+              <img src="imagenes/bam.png" alt="Bam" class="amigo-img">
+              <div class="amigo-nombre">Bam</div>
+            </div>
+            <div class="amigo-back">
+              <div class="amigo-emoji"><img src="imagenes/bam.png" alt="Bam" width="40px" height="40px"></div>
+              <div class="amigo-descripcion">El osito tranquilo, cariñoso y siempre listo para ayudar.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- === NUEVA SECCIÓN: DETALLES DEL EVENTO === -->
+    <div class="detalles-evento scroll-animado">
+      <h2>Detalles del evento</h2>
+      <p><strong>📅 Fecha:</strong> 08 de noviembre de 2025</p>
+      <p><strong>🕕 Hora:</strong> 6:30 PM</p>
+    </div>
+
+    <!-- === NUEVA SECCIÓN: CONTADOR REGRESIVO MEJORADO === -->
+    <div class="contador-safari scroll-animado" id="contadorSafari">
+      <h2>¡La Aventura Comienza en...</h2>
+      <div class="contador-container">
+        <div class="contador-grid">
+          <div class="contador-item">
+            <div class="contador-numero" id="dias">00</div>
+            <div class="contador-label">Días</div>
+          </div>
+          <div class="contador-item">
+            <div class="contador-numero" id="horas">00</div>
+            <div class="contador-label">Horas</div>
+          </div>
+          <div class="contador-item">
+            <div class="contador-numero" id="minutos">00</div>
+            <div class="contador-label">Minutos</div>
+          </div>
+          <div class="contador-item">
+            <div class="contador-numero" id="segundos">00</div>
+            <div class="contador-label">Segundos</div>
+          </div>
+        </div>
+        <div class="contador-mensaje" id="mensajeContador">¡Prepárate para la diversión!</div>
+        <div class="animales-decoracion">
+          <div class="animal-emoji">🦒</div>
+          <div class="animal-emoji">🐘</div>
+          <div class="animal-emoji">🌟</div>
+          <div class="animal-emoji">🦁</div>
+          <div class="animal-emoji">🐒</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- === NUEVA SECCIÓN: UBICACIÓN INTERACTIVA === -->
+    <div class="ubicacion-interactiva scroll-animado">
+      <h2>Ubicación del Evento</h2>
+      <a href="https://maps.google.com/maps?q=-12.0464,-77.0428" target="_blank" class="mapa-cuadro">
+        <div class="mapa-icono">📍</div>
+        <div class="mapa-texto">Ver en Google Maps</div>
+        <div class="mapa-direccion">Haz clic para ver la ubicación exacta</div>
+      </a>
+    </div>
+
+    <!-- === NUEVA SECCIÓN: CONFIRMACIÓN MEJORADA === -->
+    <div class="confirmacion-safari scroll-animado">
+      <h2>¡Confirma Tu Asistencia!</h2>
+      <div class="confirmacion-container">
+        <div class="confirmacion-texto">
+          Tu presencia es muy importante para nosotros 🧡<br>
+          Confirma tu asistencia para que Thiago y su pandilla safari puedan preparar todo para tu llegada
+        </div>
+        <div class="botones-confirmacion">
+          <a href="https://wa.me/51902554500?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20la%20fiesta%20de%20Thiaguito%20🎈%20¡Estoy%20muy%20emocionado/a%20por%20celebrar%20con%20la%20pandilla%20safari!%20🦁🐘🦒" 
+             class="btn-confirmacion btn-whatsapp" target="_blank">
+            <span class="btn-icono">💬</span>
+            <span>Confirmar por WhatsApp</span>
+          </a>
+          <a href="https://chat.whatsapp.com/CeHHrI8uSSJIJLWLdCSnzt?mode=wwt" 
+             class="btn-confirmacion btn-grupo" target="_blank">
+            <span class="btn-icono">👥</span>
+            <span>Unirse al Grupo</span>
+          </a>
+        </div>
+        <div class="confirmacion-animales">
+          <div class="confirmacion-animal">🦁</div>
+          <div class="confirmacion-animal">🐘</div>
+          <div class="confirmacion-animal">🌟</div>
+          <div class="confirmacion-animal">🦒</div>
+          <div class="confirmacion-animal">🐒</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="despedida scroll-animado">
+      <p>¡Habrá muchas sorpresas y diversión! 🌈</p>
+      <p>¡Te esperamos!</p>
+      <tr></tr>
+      <img src="imagenes/plimplimdespidiendose.png" alt="Plim Plim despidiéndose" />
+    </div>
+  </div>
+
+  <script>
+    // 🔹 Contador regresivo MEJORADO
+    const fechaEvento = new Date("Nov 8, 2025 18:30:00").getTime();
+    
+    // Elementos del contador mejorado
+    const diasElement = document.getElementById("dias");
+    const horasElement = document.getElementById("horas");
+    const minutosElement = document.getElementById("minutos");
+    const segundosElement = document.getElementById("segundos");
+    const mensajeElement = document.getElementById("mensajeContador");
+
+    function actualizarContador() {
+      const ahora = new Date().getTime();
+      const distancia = fechaEvento - ahora;
+      
+      if (distancia < 0) {
+        // El evento ya pasó
+        diasElement.textContent = "00";
+        horasElement.textContent = "00";
+        minutosElement.textContent = "00";
+        segundosElement.textContent = "00";
+        mensajeElement.textContent = "🎈 ¡El gran día ha llegado! 🎈";
+        return;
+      }
+      
+      // Cálculos
+      const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+      
+      // Actualizar elementos
+      diasElement.textContent = dias.toString().padStart(2, '0');
+      horasElement.textContent = horas.toString().padStart(2, '0');
+      minutosElement.textContent = minutos.toString().padStart(2, '0');
+      segundosElement.textContent = segundos.toString().padStart(2, '0');
+      
+      // Mensajes especiales según el tiempo restante
+      if (dias === 0 && horas < 24) {
+        mensajeElement.textContent = "¡Mañana es el gran día! 🎉";
+      } else if (dias === 0 && horas < 1) {
+        mensajeElement.textContent = "¡Falta menos de una hora! ⏰";
+      } else if (dias < 7) {
+        mensajeElement.textContent = "¡La cuenta regresiva está en su etapa final! 🚀";
+      } else {
+        mensajeElement.textContent = "¡Prepárate para la diversión!";
+      }
+    }
+
+    // Actualizar inmediatamente y luego cada segundo
+    actualizarContador();
+    setInterval(actualizarContador, 1000);
+
+    // 🔹 Sistema de destellos para el texto
+    const destellosTexto = document.getElementById('destellosTexto');
+    
+    function crearDestellos() {
+      destellosTexto.innerHTML = '';
+      
+      for (let i = 0; i < 15; i++) {
+        const destello = document.createElement('div');
+        
+        const tipo = Math.random();
+        if (tipo < 0.3) {
+          destello.classList.add('destello', 'estrella');
+        } else if (tipo < 0.6) {
+          destello.classList.add('destello', 'rayo');
+        } else {
+          destello.classList.add('destello');
+        }
+        
+        const left = Math.random() * 100;
+        const top = Math.random() * 100;
+        
+        destello.style.left = `${left}%`;
+        destello.style.top = `${top}%`;
+        destello.style.animationDelay = `${Math.random() * 5}s`;
+        destello.style.animationDuration = `${2 + Math.random() * 3}s`;
+        
+        destellosTexto.appendChild(destello);
+      }
+    }
+    
+    crearDestellos();
+    setInterval(crearDestellos, 6000);
+
+    // 🔹 ANIMACIÓN DE PELOTAS - CÓDIGO CORREGIDO
+    const pelotasContainer = document.getElementById("pelotas");
+    const areaPelotas = document.querySelector('.area-pelotas');
+    const pelotas = [];
+    
+    //const tamanosBurbujas = [70, 85, 100, 115, 130];
+    const tamanosBurbujas = [150, 150, 150, 150, 150];
+    const maxBurbujas = 999999; // Prácticamente sin límite
+    
+    const imagenesDisponibles = [
+      'imagenes/thiago1.jpeg', 'imagenes/thiago2.jpeg', 'imagenes/thiago3.jpeg', 'imagenes/thiago5.jpg', 'imagenes/thiago6.jpg', 'imagenes/thiago7.jpg', 'imagenes/thiago8.jpg', 'imagenes/thiago9.jpeg', 
+      'imagenes/thiago10.jpeg', 'imagenes/thiago11.jpeg', 'imagenes/thiago12.jpeg', 'imagenes/thiago13.jpeg', 'imagenes/thiago14.jpeg', 'imagenes/thiago15.jpeg',
+      'imagenes/thiago16.jpeg', 'imagenes/thiago17.jpeg', 'imagenes/thiago18.jpeg', 'imagenes/thiago19.jpeg', 'imagenes/thiago20.jpeg',
+      'imagenes/thiago21.jpeg', 'imagenes/thiago22.jpeg', 'imagenes/thiago23.jpeg', 'imagenes/thiago24.jpeg', 'imagenes/thiago25.jpeg',
+      'imagenes/thiago26.jpeg', 'imagenes/thiago27.jpeg', 'imagenes/thiago28.jpeg', 'imagenes/thiago29.jpeg', 'imagenes/thiago30.jpeg',
+      'imagenes/thiago31.jpeg', 'imagenes/thiago32.jpeg'
+    ];
+
+    let siguienteId = 0;
+    let tiempoUltimaCreacion = 0;
+    //const intervaloCreacion = 1500;
+    const intervaloCreacion = 1000; // Crear burbujas más rápido
+
+    function obtenerAreaPelotas() {
+      return {
+        width: areaPelotas.offsetWidth,
+        height: areaPelotas.offsetHeight
+      };
+    }
+
+    function obtenerImagenAleatoria() {
+      const indiceAleatorio = Math.floor(Math.random() * imagenesDisponibles.length);
+      return imagenesDisponibles[indiceAleatorio];
+    }
+
+    function obtenerTamanioAleatorio() {
+      return tamanosBurbujas[Math.floor(Math.random() * tamanosBurbujas.length)];
+    }
+
+    function calcularDistancia(p1, p2) {
+      const dx = p2.x - p1.x;
+      const dy = p2.y - p1.y;
+      return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    function obtenerPosicionValida(radio) {
+      const area = obtenerAreaPelotas();
+      const margenSeguridad = radio * 1.2;
+      const margenBorde = 60; // Mantener las pelotas alejadas del borde
+      
+      let mejorPosicion = null;
+      let mejorDistancia = 0;
+      let intentos = 0;
+      const maxIntentos = 100;
+      
+      while (intentos < maxIntentos) {
+        const x = margenBorde + Math.random() * (area.width - radio * 2 - margenBorde * 2);
+        const y = margenBorde + Math.random() * (area.height - radio * 2 - margenBorde * 2);
+        
+        let distanciaMinima = Infinity;
+        let posicionValida = true;
+        
+        for (const pelota of pelotas) {
+          if (pelota.reventando || pelota.naciendo) continue;
+          
+          const distancia = calcularDistancia({x, y}, pelota);
+          const distanciaRequerida = radio + pelota.radio + margenSeguridad;
+          
+          if (distancia < distanciaRequerida) {
+            posicionValida = false;
+            break;
+          }
+          
+          distanciaMinima = Math.min(distanciaMinima, distancia);
+        }
+        
+        if (posicionValida) {
+          if (distanciaMinima > mejorDistancia) {
+            mejorDistancia = distanciaMinima;
+            mejorPosicion = { x, y };
+          }
+          
+          if (distanciaMinima > (radio * 3)) {
+            break;
+          }
+        }
+        
+        intentos++;
+      }
+      
+      if (mejorPosicion) {
+        return mejorPosicion;
+      }
+      
+      return {
+        x: Math.random() * (area.width - radio * 2),
+        y: Math.random() * (area.height - radio * 2)
+      };
+    }
+
+    function crearBurbuja() {
+      if (pelotas.length >= maxBurbujas) return null;
+      
+      const tamanio = obtenerTamanioAleatorio();
+      const radio = tamanio / 2;
+      const posicion = obtenerPosicionValida(radio);
+      
+      const pelota = document.createElement("div");
+      pelota.classList.add("pelota");
+      pelota.style.width = `${tamanio}px`;
+      pelota.style.height = `${tamanio}px`;
+      
+      const imagenSrc = obtenerImagenAleatoria();
+      const img = document.createElement("img");
+      img.src = imagenSrc;
+      img.alt = `Burbuja ${siguienteId + 1}`;
+      img.onerror = function() {
+        console.warn(`Error cargando imagen: ${imagenSrc}`);
+        pelota.style.background = `linear-gradient(135deg, #${Math.floor(Math.random()*16777215).toString(16)}, #${Math.floor(Math.random()*16777215).toString(16)})`;
+      };
+      
+      pelota.appendChild(img);
+      pelotasContainer.appendChild(pelota);
+
+      const nuevaPelota = {
+        el: pelota,
+        imgElement: img,
+        x: posicion.x,
+        y: posicion.y,
+        dx: (Math.random() - 0.5) * 0.8,
+        dy: (Math.random() - 0.5) * 0.8,
+        imagen: imagenSrc,
+        reventando: false,
+        naciendo: true,
+        radio: radio,
+        tamanio: tamanio,
+        id: siguienteId++
+      };
+
+      const area = obtenerAreaPelotas();
+      
+      const desdeBorde = Math.random() > 0.5;
+      let startX, startY;
+      
+      if (desdeBorde) {
+        startX = Math.random() > 0.5 ? -tamanio : area.width + tamanio;
+        startY = Math.random() * area.height;
+      } else {
+        startX = Math.random() * area.width;
+        startY = Math.random() > 0.5 ? -tamanio : area.height + tamanio;
+      }
+
+      pelota.style.setProperty('--start-x', `${startX}px`);
+      pelota.style.setProperty('--start-y', `${startY}px`);
+      pelota.style.setProperty('--target-x', `${posicion.x}px`);
+      pelota.style.setProperty('--target-y', `${posicion.y}px`);
+
+      pelota.style.transform = `translate(${startX}px, ${startY}px)`;
+      pelotas.push(nuevaPelota);
+      
+      setTimeout(() => {
+        pelota.classList.add('naciendo');
+        
+        setTimeout(() => {
+          pelota.style.transform = `translate(${posicion.x}px, ${posicion.y}px)`;
+          pelota.classList.remove('naciendo');
+          nuevaPelota.naciendo = false;
+        }, 1500);
+      }, 100);
+      
+      return nuevaPelota;
+    }
+
+    function gestionarCicloDeVida() {
+      const ahora = Date.now();
+      
+      if (ahora - tiempoUltimaCreacion > intervaloCreacion) {
+        crearBurbuja();
+        tiempoUltimaCreacion = ahora;
+      }
+      
+      // Eliminar burbujas que estén muy lejos del área visible
+      for (let i = pelotas.length - 1; i >= 0; i--) {
+        const p = pelotas[i];
+        if (p.x < -500 || p.x > window.innerWidth + 500 ||
+            p.y < -500 || p.y > window.innerHeight + 500) {
+          p.el.remove();
+          pelotas.splice(i, 1);
+        }
+      }
+    }
+
+    function reventarBurbuja(pelota) {
+      if (pelota.reventando || pelota.naciendo) return;
+      
+      //pelota.reventando = true;
+      //pelota.el.classList.add('reventando');
+      
+      setTimeout(() => {
+        const indice = pelotas.indexOf(pelota);
+        if (indice > -1) {
+          pelota.el.remove();
+          pelotas.splice(indice, 1);
+        }
+      }, 600);
+    }
+
+    function manejarColisiones() {
+      for (let i = 0; i < pelotas.length; i++) {
+        for (let j = i + 1; j < pelotas.length; j++) {
+          const p1 = pelotas[i];
+          const p2 = pelotas[j];
+          
+          if (p1.naciendo || p2.naciendo) continue;
+          
+          const distancia = calcularDistancia(p1, p2);
+          const distanciaMinima = p1.radio + p2.radio;
+          
+          if (distancia < distanciaMinima) {
+            // Calcular el ángulo de colisión
+            const angulo = Math.atan2(p2.y - p1.y, p2.x - p1.x);
+            
+            // Calcular las nuevas velocidades basadas en la colisión elástica
+            const velocidad1 = Math.sqrt(p1.dx * p1.dx + p1.dy * p1.dy);
+            const velocidad2 = Math.sqrt(p2.dx * p2.dx + p2.dy * p2.dy);
+            
+            const direccion1 = Math.atan2(p1.dy, p1.dx);
+            const direccion2 = Math.atan2(p2.dy, p2.dx);
+            
+            const nuevaVx1 = velocidad2 * Math.cos(direccion2 - angulo) * Math.cos(angulo);
+            const nuevaVy1 = velocidad2 * Math.cos(direccion2 - angulo) * Math.sin(angulo);
+            const nuevaVx2 = velocidad1 * Math.cos(direccion1 - angulo) * Math.cos(angulo);
+            const nuevaVy2 = velocidad1 * Math.cos(direccion1 - angulo) * Math.sin(angulo);
+            
+            // Aplicar las nuevas velocidades con un factor de amortiguación
+            const amortiguacion = 0.95;
+            p1.dx = nuevaVx1 * amortiguacion;
+            p1.dy = nuevaVy1 * amortiguacion;
+            p2.dx = nuevaVx2 * amortiguacion;
+            p2.dy = nuevaVy2 * amortiguacion;
+            
+            // Separar las pelotas para evitar superposición
+            const overlap = distanciaMinima - distancia;
+            const separacionX = (overlap * Math.cos(angulo)) / 2;
+            const separacionY = (overlap * Math.sin(angulo)) / 2;
+            
+            p1.x -= separacionX;
+            p1.y -= separacionY;
+            p2.x += separacionX;
+            p2.y += separacionY;
+          }
+        }
+      }
+    }
+
+    function animar() {
+      const area = obtenerAreaPelotas();
+      const margenBorde = 20; // Margen pequeño para el rebote suave
+      
+      for (let i = 0; i < pelotas.length; i++) {
+        const p = pelotas[i];
+        
+        if (p.naciendo) continue;
+        
+        p.x += p.dx;
+        p.y += p.dy;
+
+        // Mantener las pelotas dentro del área con rebote suave
+        if (p.x <= margenBorde) {
+          p.dx = Math.abs(p.dx) * 0.95; // Asegura movimiento hacia la derecha
+          p.x = margenBorde;
+        } else if (p.x + p.tamanio >= area.width - margenBorde) {
+          p.dx = -Math.abs(p.dx) * 0.95; // Asegura movimiento hacia la izquierda
+          p.x = area.width - p.tamanio - margenBorde;
+        }
+        
+        if (p.y <= margenBorde) {
+          p.dy = Math.abs(p.dy) * 0.95; // Asegura movimiento hacia abajo
+          p.y = margenBorde;
+        } else if (p.y + p.tamanio >= area.height - margenBorde) {
+          p.dy = -Math.abs(p.dy) * 0.95; // Asegura movimiento hacia arriba
+          p.y = area.height - p.tamanio - margenBorde;
+        }
+
+        p.el.style.transform = `translate(${p.x}px, ${p.y}px)`;
+      }
+      
+      manejarColisiones();
+      gestionarCicloDeVida();
+      
+      requestAnimationFrame(animar);
+    }
+
+    function inicializarBurbujas() {
+      function crearIniciales() {
+        if (pelotas.length < 3) {
+          crearBurbuja();
+          setTimeout(crearIniciales, 800);
+        } else {
+          animar();
+        }
+      }
+      
+      crearIniciales();
+    }
+
+    // 🔹 ANIMACIÓN AL SCROLL
+    function observarElementos() {
+      const elementos = document.querySelectorAll('.scroll-animado');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+      
+      elementos.forEach(elemento => {
+        observer.observe(elemento);
+      });
+    }
+
+    window.addEventListener('load', function() {
+      inicializarBurbujas();
+      observarElementos();
+    });
+    
+    window.addEventListener('resize', function() {
+      pelotasContainer.innerHTML = '';
+      pelotas.length = 0;
+      setTimeout(inicializarBurbujas, 500);
+    });
+
+  </script>
+</body>
+</html>
